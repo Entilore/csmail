@@ -21,10 +21,21 @@ def __get_emails():
 	if __emailsData:
 		return __emailsData
 	data = None
-	with open(EMAILS_PATH, "r") as f:
-		data = yaml.load(f)
-		if not data:
-			data = []
+
+	DATA_DIR = "/".join(EMAILS_PATH.split("/")[:-1])
+	if not os.path.exists(DATA_DIR):
+		os.makedirs(DATA_DIR)
+
+	data = []
+	try:
+		with open(EMAILS_PATH, "r") as f:
+			data = yaml.load(f)
+
+	except IOError:
+		open(EMAILS_PATH, 'w')
+
+	if not data:
+		data = []
 	__emailsData = data
 	return data
 
