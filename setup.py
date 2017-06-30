@@ -7,7 +7,7 @@ dependencies = ['click', 'pyyaml']
 
 setup(
     name='csmail',
-    version='0.1.0',
+    version='0.1.1',
     url='https://github.com/entilore/csmail',
     license='BSD',
     author='Thomas Hareau',
@@ -19,6 +19,7 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=dependencies,
+    python_requires='>=3',
     entry_points={
         'console_scripts': [
             'csmail = py_csmail.cli:cli',
@@ -40,8 +41,6 @@ setup(
         'Operating System :: MacOS',
         'Operating System :: Unix',
         'Operating System :: Microsoft :: Windows',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ]
