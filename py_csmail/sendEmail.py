@@ -5,6 +5,8 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+COMMASPACE = ', '
+
 
 class MIMEMail(MIMEMultipart):
 	def __init__(self, subject, message, exp, from_address=None):
@@ -22,8 +24,9 @@ class MIMEMail(MIMEMultipart):
 		self.mailserver.login(self.exp["email"], self.exp["password"])
 
 	def sendMails(self, dests):
-		for d in dests:
-			self.send(d)
+		self["To"] = COMMASPACE.join(dests)
+
+		self.mailserver.sendmail(self.exp["email"], dests, self.as_string())
 
 	def send(self, dest):
 		self["To"] = dest
