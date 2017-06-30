@@ -2,6 +2,7 @@
 
 Send mails from the CLI
 
+*Warning : this app have to save your password*
 
 # Installation
 
