@@ -21,17 +21,20 @@ class MIMEMail(MIMEMultipart):
 		self.attach(MIMEText(message, "plain", "utf-8"))
 
 		self.mailserver = smtplib.SMTP_SSL(exp["smtp"])
-		self.mailserver.login(self.exp["email"], self.exp["password"])
 
 	def sendMails(self, dests):
+		self.mailserver.login(self.exp["email"], self.exp["password"])
+
 		self["To"] = COMMASPACE.join(dests)
 
 		self.mailserver.sendmail(self.exp["email"], dests, self.as_string())
 
+		self.mailserver.quit()
+
 	def send(self, dest):
+
+		self.mailserver.login(self.exp["email"], self.exp["password"])
 		self["To"] = dest
 
 		self.mailserver.sendmail(self.exp["email"], dest, self.as_string())
-
-	def __del__(self):
 		self.mailserver.quit()
