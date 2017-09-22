@@ -7,7 +7,7 @@ dependencies = ['click', 'pyyaml']
 
 setup(
     name='csmail',
-    version='0.1.1',
+    version='0.1.2',
     url='https://github.com/entilore/csmail',
     license='BSD',
     author='Thomas Hareau',
