@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
 import click
 from py_csmail import emailsManagement as em
 from py_csmail.sendEmail import MIMEMail as MIMEMail
@@ -95,6 +96,10 @@ def delete(email):
 @click.argument("dests", nargs=-1, required=True, callback=check_emails)
 def send(exp, subject, exp_name, message, dests):
 	exp_data = em.get(exp)
+
+	if os.path.isfile(message):
+		with open(message, "r") as message_file:
+			message = message_file.read()
 
 	email = MIMEMail(subject, message, exp_data, exp_name)
 	email.sendMails(dests)
