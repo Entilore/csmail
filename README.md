@@ -17,7 +17,7 @@ sudo pip3 install git+https://github.com/ThHareau/csmail
 First, configure your first email:
 ```bash 
 sudo csmail email add <YOUR EMAIL> <YOUR SMTP SERVER HOSTNAME> <YOUR PASSWORD>
-# the password will be saved unencrypted, in a file only accessible by the root user. That's why sudo is needed
+# the password will be saved unencrypted in a file own by the root user, but accessible by a normal user. Consider deleting the email address once finished. 
 ```
 
 Then send your first email: 
